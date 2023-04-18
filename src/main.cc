@@ -1,19 +1,9 @@
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 #include <filesystem>
-#include <TlHelp32.h>
-#include <stdio.h>
 #include <fstream>
-#include <string>
-#include <regex>
-#include <vector>
-#include <iostream>
 #include <winsock2.h>
-#include <format>
 
 namespace fs = std::filesystem;
 
-#define internal        static
 #define local_persist   static
 
 void
