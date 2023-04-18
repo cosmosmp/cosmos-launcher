@@ -4,12 +4,10 @@
 
 namespace fs = std::filesystem;
 
-#define local_persist   static
-
 void
 ShutdownError(const char* cMessage) {
 #if defined(_WIN32)
-    local_persist wchar_t buf[256];
+    wchar_t buf[256];
     FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, 0, WSAGetLastError(), 0, buf, 256, 0);
     wchar_t* nl = wcsrchr(buf, L'\n');
     if (nl) *nl = 0;
@@ -18,7 +16,7 @@ ShutdownError(const char* cMessage) {
     wcstombs_s(&numConverted, mbBuf, sizeof(mbBuf), buf, _TRUNCATE);
     fprintf_s(stderr, "%s. %s", cMessage, mbBuf);
 #else
-    local_persist thread_local char buf[256];
+    thread_local char buf[256];
     strerror_r(errno, buf, sizeof(buf));
     fprintf_s(stderr, "%s\nError: %s", cMessage, buf);
 #endif
@@ -26,7 +24,6 @@ ShutdownError(const char* cMessage) {
     getchar();
     exit(1);
 }
-
 
 char*
 GetSteamPath()
