@@ -4,7 +4,7 @@ project(cosmos-launcher)
 set(CMAKE_CXX_STANDARD 20)
 
 set(SOURCES
-	src/main.cc
+    src/main.cc
 )
 
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
